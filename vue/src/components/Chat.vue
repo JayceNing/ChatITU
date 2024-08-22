@@ -104,7 +104,6 @@
                 v-model="inputMessage"
                 placeholder="请输入消息"
                 @keyup.enter="sendMessage"
-                @input="handleInput"
                 size="large"
             >
               <template #prepend>
@@ -252,7 +251,7 @@ export default {
       console.log(that.messages)
       var message = '';
       if (that.useplugin == 1 && that.explain_message == 1){
-        message = that.messages[that.messages.length-4].content + ' 上面是用户的问题，请根据下面插件检索的ITU相关项目标题，对用户问题进行解答。' + that.messages[that.messages.length-2].content + pre_prompt;
+        message = that.messages[that.messages.length-4].content + '。上面是用户的问题，请结合下面的额外信息，对用户问题进行解答。' + pre_prompt;
       } else {
         message = that.messages[that.messages.length-2].content + pre_prompt;
       }
@@ -260,6 +259,8 @@ export default {
       // var send_messages = [...that.messages]
       var send_messages = JSON.parse(JSON.stringify(that.messages));
       send_messages[that.messages.length-2].content = message
+      // 仅保留最后两条
+      // send_messages = send_messages.slice(-2)
       console.log("-------------------------------------")
       console.log(send_messages)
 
@@ -438,7 +439,7 @@ export default {
         const assistantReply = {
               id: Date.now(),
               content: '检索中，请稍候...',
-              isUser: false,
+              isUser: true,  // 这里要设置成 true，因为额外的信息作为prompt和用户问题一起输入大模型
               character: 2,
               isTyping: 1
             };
@@ -447,7 +448,7 @@ export default {
         await this.get_work_item_list(key_words[0]);
         // 获取并转换 titles 列表为字符串
         let pre_prompt = this.work_item_dict["titles"];
-        this.pre_prompt = "下面是该领域下的项目标题：" + pre_prompt.join(", ");
+        this.pre_prompt = "ITU中检索" + key_words[0] + "得到的全部相关项目标题有：" + pre_prompt.join(", ");
         this.explain_message = 1
       }
 
