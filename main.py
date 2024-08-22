@@ -84,4 +84,4 @@ if __name__ == '__main__':
     app.websocket("/ws")(SparkWS.websocket_endpoint)
     app.websocket("/ws/chat_spark")(chat_spark_ws)
 
-    uvicorn.run(app, host="0.0.0.0", port=8008)
+    uvicorn.run(app, host="0.0.0.0", port=8009)
