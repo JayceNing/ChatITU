@@ -10,15 +10,15 @@ class ChromeDriver:
     def __init__(self):
         print('Initializing Chrome WebDriver...')
         # 设置 ChromeOptions 以便在无头模式下运行 Chrome 浏览器
-        # chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        # chrome_options.add_argument("--no-sandbox")
-        # chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
         # 初始化 Chrome WebDriver
         # 创建 ChromeDriver 服务
-        chrome_driver_path = "D:/anaconda3/envs/swin/chromedriver.exe"  # 将此路径替换为 ChromeDriver 的实际路径
+        chrome_driver_path = "/usr/local/bin/chromedriver"  # 将此路径替换为 ChromeDriver 的实际路径
         service = Service(executable_path=chrome_driver_path)
-        self.driver = webdriver.Chrome(service=service)
+        self.driver = webdriver.Chrome(service=service, options=chrome_options)
         # self.driver = webdriver.Chrome(options=chrome_options)
         print('Chrome WebDriver initialized')
 
