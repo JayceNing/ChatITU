@@ -73,7 +73,7 @@ python main.py
 * ./LLM/SparkWS.py
 
 ### 环境配置教程
-更详细的环境配置教程可参见 https://github.com/JayceNing/ChatBrain/blob/master/docs/environment_setup.md
+更详细的环境配置教程可参见 https://github.com/JayceNing/ChatITU/blob/master/Docs/environment_setup.md
 
 ## 快速使用
 
