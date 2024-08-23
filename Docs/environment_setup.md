@@ -1,4 +1,5 @@
 # Environment Setup
+This is the tutorial for environment setup on Ubuntu system.
 ## Python Environment
 ```bash
 pip install -r requirements.txt
@@ -33,3 +34,14 @@ chromedriver --version
 ```
 
 **Note:** Make sure the path of Chrome Drive is correct in ```../WebReader.py``` line 19. If you configurate Chrome following above toturial, you don't have to make any change.
+
+## VUE
+Install packages.
+```bash
+cd ./vue
+npm install
+```
+Start service.
+```bash
+npm run dev
+```

@@ -142,6 +142,7 @@ import axios from 'axios'
 import showdown from 'showdown';
 
 const converter = new showdown.Converter();
+const server_ip = '121.43.42.18'
 
 export default {
   name: 'Chat.vue',
@@ -237,7 +238,7 @@ export default {
 
     async spark_client(pre_prompt){
       this.isSparkClientClosed = false;
-      const socket = new WebSocket("ws://localhost:8009/ws");
+      const socket = new WebSocket("ws://" + server_ip + ":8009/ws");
       const assistantReply = {
               id: Date.now(),
               content: '',
@@ -301,7 +302,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('http://localhost:8009/v1/get_work_item_list', da, {
+        const response = await axios.post('http://' + server_ip + ':8009/v1/get_work_item_list', da, {
           headers: {
             'Content-Type': 'application/json'
           },
@@ -362,7 +363,7 @@ export default {
       this.messages.push(assistantReply);
 
       try {
-        const response = await axios.post('http://localhost:8009/v1/read_programme_page', da, {
+        const response = await axios.post('http://' + server_ip + ':8009/v1/read_programme_page', da, {
           headers: {
             'Content-Type': 'application/json'
           },
@@ -391,7 +392,7 @@ export default {
         "urls": this.work_item_dict["urls"],
         "x": ""
       };
-      axios.post('http://localhost:8009/v1/download_excel', da, {
+      axios.post('http://' + server_ip + ':8009/v1/download_excel', da, {
         headers: {
           'Content-Type': 'application/json'
         },
